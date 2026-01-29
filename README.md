@@ -1,61 +1,167 @@
-Methodology – Steps in Defining a Problem in ML/AI
-1. Understand the Problem Domain:
-The domain of cybersecurity involves identifying, analyzing, and mitigating digital threats.
-Specific areas include spam filtering, intrusion detection, malware analysis, and phishing
-detection.
-Example Context: In phishing detection, attackers craft fake websites that appear legitimate to
-steal user credentials. These threats evolve constantly, making static detection systems insufficient.
+A Hybrid Machine Learning Approach for Phishing Detection — Documentation
+Purpose
 
-2. Articulate the Problem Statement:
-Problem Statement:
-"Develop a machine learning model that classifies websites as phishing or legitimate with at least 90% accuracy, enabling early warning and automated takedown actions to reduce user exposure and financial loss."
+This documentation describes the problem framework, dataset strategy, hybrid feature engineering pipeline, classification methodology, evaluation process, and refinement workflow based on the hybrid machine learning approach proposed for phishing detection. The system aims to deliver accurate, efficient, and deployable detection of phishing URLs in real-world cybersecurity environments.
 
-This statement:
-● Defines the task: classification 
-● Outlines the success criteria: ≥90% accuracy
-● Links to business goals: security, automation, cost saving
+1. Problem Overview
 
-3. Identify Input Data Requirements:
-● Data Needed:
-o URL-based features (length, use of IP, special characters)
-o WHOIS metadata (domain age, registrar)
-o Domain reputation (VirusTotal, blacklists)
-o Website content features (HTML tags, scripts)
-● Format: CSV or JSON 
-● Source: Public datasets like PhishTank, OpenPhish
-● Bias & Privacy Considerations: Ensure dataset diversity across languages and regions;
-avoid overfitting to a specific domain type.
+The research focuses on binary classification of websites into phishing or legitimate categories using a hybrid machine learning model. The hybrid framework combines feature selection with classification to reduce computational complexity while preserving detection accuracy.
 
-4. Define Output Requirements:
-● Output Format: Binary classification – “phishing” or “legitimate”
-● Evaluation Metrics: Accuracy, precision, recall, F1-score
-● Interpretability: Feature importance ranking or SHAP values
-● Real-time Needs: Fast inference time (<1s per URL) for live web monitoring
+The objective is to design a system capable of adapting to evolving phishing techniques and supporting automated web security defenses.
 
-5. Establish Constraints and Assumptions:
-● Constraints:
-o Real-time performance required (for automated web scanners)
-o Limited labeled phishing data
-o Compliance with data privacy regulations
-● Assumptions:
-o Data provided is representative of real-world web traffic
-o URLs alone can sufficiently distinguish phishing attempts (without full HTML
-content)
-● Ethical Consideration: Ensure false positives are minimized to avoid unnecessary
-disruption to legitimate businesses.
+2. Goals & Success Criteria
+Primary Goals
 
-6. Evaluate Feasibility and Impact:
-● Feasibility:
-o Lightweight models (e.g., decision trees, logistic regression) can run in
-constrained environments.
-o Pre-trained transformers (e.g., URL-BERT) may enhance accuracy with more
-computing power.
-● Impact:
-o Reduces manual investigation workload
-o Helps in early detection of phishing campaigns
-o Can be integrated with browser extensions or email filters
+Detection accuracy ≥ 90%
 
-7. Document and Refine:
+F1-score ≥ 0.88 for phishing class
 
-All steps, datasets, assumptions, and planned workflows should be documented in a version-
-controlled format (e.g., README.md in GitHub or project documentation tool). Updates should reflect dataset changes, model performance evolution, and stakeholder feedback.
+Low inference latency suitable for real-time use
+
+Secondary Goals
+
+Minimized false positive rate
+
+Generalization to unseen phishing patterns
+
+Reduced feature redundancy
+
+3. Data Summary
+Data Sources
+
+Public phishing repositories (PhishTank, OpenPhish)
+
+Public cybersecurity datasets
+
+Research benchmark datasets
+
+Data Format
+
+Structured feature datasets (CSV)
+
+Label: phishing / legitimate
+
+Bias & Privacy Considerations
+
+No personal data collected
+
+Diverse domain coverage
+
+Balanced dataset handling
+
+Removal of outdated samples
+
+4. Feature Engineering
+
+The hybrid model relies on optimized feature extraction and selection.
+
+URL & Website Features
+
+URL length and structure
+
+Symbol frequency
+
+Subdomain complexity
+
+Presence of phishing keywords
+
+Host-based indicators
+
+Hybrid Optimization
+
+Feature selection reduces dimensionality
+
+Eliminates redundant attributes
+
+Improves classification efficiency
+
+5. Modeling Approach
+
+The hybrid system integrates feature selection with supervised classification.
+
+Classifiers Used
+
+Decision Tree
+
+Random Forest
+
+Support Vector Machine
+
+Feature selection is applied before classification to create a lightweight and accurate detection pipeline.
+
+Explainability
+
+Feature importance ranking
+
+Transparent decision rules
+
+Interpretable phishing indicators
+
+6. Evaluation Strategy
+Offline Metrics
+
+Accuracy
+
+Precision
+
+Recall
+
+F1-score
+
+Operational Metrics
+
+False positive rate
+
+Stability across new datasets
+
+Efficiency under real-time constraints
+
+7. Versioning & Refinement Workflow
+
+Continuous dataset updates
+
+Periodic retraining
+
+Performance monitoring
+
+Documented experiment logs
+
+Feature refinement based on drift detection
+
+8. Reproducibility
+
+Fixed random seed
+
+Stored experiment configurations
+
+Recorded dataset versions
+
+Traceable model parameters
+
+9. Ethics & Risk Considerations
+
+Avoid unfair blocking of legitimate websites
+
+Minimize false positives
+
+Maintain explainability
+
+Support human cybersecurity analysts
+
+10. Architecture & Workflow
+
+High-Level Pipeline
+
+URL Collection
+
+Feature Extraction
+
+Hybrid Feature Selection
+
+Supervised Classification
+
+Decision Output
+
+Feedback & Model Update
+
+The workflow enables continuous learning and adaptation to emerging phishing threats.
